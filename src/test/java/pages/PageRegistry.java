@@ -1,10 +1,7 @@
 package pages;
 
 import com.codeborne.selenide.Selenide;
-import pages.impl.ClickPage;
-import pages.impl.FramesPage;
-import pages.impl.SampleAppPage;
-import pages.impl.TextInputPage;
+import pages.impl.*;
 
 import java.util.Map;
 import java.util.function.Supplier;
@@ -14,14 +11,16 @@ public class PageRegistry {
             "SampleAppPage", "http://www.uitestingplayground.com/sampleapp",
             "FramesPage", "http://www.uitestingplayground.com/frames",
             "TextInputPage", "http://www.uitestingplayground.com/textinput",
-            "ClickPage", "http://www.uitestingplayground.com/click"
+            "ClickPage", "http://www.uitestingplayground.com/click",
+            "ClientSideDelayPage", "http://www.uitestingplayground.com/clientdelay"
     );
 
     private static final Map<String, Supplier<Page>> pages = Map.of(
             "SampleAppPage", SampleAppPage::new,
             "FramesPage", FramesPage::new,
             "TextInputPage", TextInputPage::new,
-            "ClickPage", ClickPage::new
+            "ClickPage", ClickPage::new,
+            "ClientSideDelayPage", ClientSideDelayPage::new
     );
 
     public static Page load(String pageName) {

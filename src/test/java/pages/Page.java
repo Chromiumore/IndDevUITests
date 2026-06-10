@@ -13,5 +13,5 @@ public interface Page {
 
     void checkLabelIsEmpty(String labelName);
 
-    void waitForElementToAppear(String name);
+    void waitForElementToAppear(String name, int seconds);
 }

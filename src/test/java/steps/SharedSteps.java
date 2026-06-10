@@ -38,4 +38,9 @@ public class SharedSteps {
     public void checkLabelIsEmpty(String label) {
         TestContext.getCurrentPage().checkLabelIsEmpty(label);
     }
+
+    @Тогда("Ожидаем появления объекта {string} в течении {int} секунд")
+    public void waitForElement(String name, int seconds) {
+        TestContext.getCurrentPage().waitForElementToAppear(name, seconds);
+    }
 }

@@ -89,8 +89,8 @@ public class BasePage implements Page {
     }
 
     @Override
-    public void waitForElementToAppear(String name) {
+    public void waitForElementToAppear(String name, int seconds) {
         By locator = elements.get(name);
-        $(locator).shouldBe(exist, Duration.ofSeconds(15));
+        $(locator).shouldBe(exist, Duration.ofSeconds(seconds));
     }
 }
