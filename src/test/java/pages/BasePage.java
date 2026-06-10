@@ -15,11 +15,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.switchTo;
 
 public class BasePage implements Page {
-    protected Map<String, By> fields;
-
-    protected Map<String, By> buttons;
-
-    protected Map<String, By> labels;
+    protected Map<String, By> elements;
 
     protected void fillField(By locator, String value) {
         String chord = Keys.chord(Keys.COMMAND, "a");
@@ -57,43 +53,37 @@ public class BasePage implements Page {
 
     @Override
     public void fillField(String fieldName, String value) {
-        By locator = fields.get(fieldName);
+        By locator = elements.get(fieldName);
         fillField(locator, value);
     }
 
     @Override
     public void clickButton(String buttonName) {
-        By locator = buttons.get(buttonName);
+        By locator = elements.get(buttonName);
         click(locator);
     }
 
     @Override
-    public void checkText(String fieldName, String value) {
-        By locator = fields.get(fieldName);
-        shouldHaveTextByAttributeValue(locator, value);
-    }
-
-    @Override
     public void checkTextByAttributeValue(String fieldName, String value) {
-        By locator = fields.get(fieldName);
+        By locator = elements.get(fieldName);
         shouldHaveTextByAttributeValue(locator, value);
     }
 
     @Override
     public void selectDropdown(String fieldName, String value) {
-        By locator = fields.get(fieldName);
+        By locator = elements.get(fieldName);
         select(locator, value);
     }
 
     @Override
     public void checkLabelText(String labelName, String value) {
-        By locator = labels.get(labelName);
+        By locator = elements.get(labelName);
         shouldHaveText(locator, value);
     }
 
     @Override
     public void checkLabelIsEmpty(String labelName) {
-        By locator = labels.get(labelName);
+        By locator = elements.get(labelName);
         shouldBeEmpty(locator);
     }
 }
