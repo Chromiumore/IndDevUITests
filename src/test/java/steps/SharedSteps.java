@@ -5,7 +5,7 @@ import io.cucumber.java.ru.Когда;
 import io.cucumber.java.ru.Тогда;
 import pages.Page;
 import pages.PageRegistry;
-import pages.TestContext;
+import pages.context.TestContext;
 
 public class SharedSteps {
     @Дано("Загружаем страницу {string}")
@@ -32,5 +32,10 @@ public class SharedSteps {
     @Тогда("Проверим, что подпись {string} содержит значение {string}")
     public void checkLabelValue(String labelName, String value) {
         TestContext.getCurrentPage().checkLabelText(labelName, value);
+    }
+
+    @Тогда("Проверим, что подпись {string} пустая")
+    public void checkLabelIsEmpty(String label) {
+        TestContext.getCurrentPage().checkLabelIsEmpty(label);
     }
 }

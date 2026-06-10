@@ -1,4 +1,6 @@
-package pages;
+package pages.context;
+
+import pages.Page;
 
 public class TestContext {
     private static Page currentPage;

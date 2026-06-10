@@ -12,4 +12,6 @@ public interface Page {
     void selectDropdown(String fieldName, String value);
 
     void checkLabelText(String labelName, String value);
+
+    void checkLabelIsEmpty(String labelName);
 }

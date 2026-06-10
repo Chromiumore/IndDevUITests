@@ -8,11 +8,19 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.Actions;
 
 import java.time.Duration;
+import java.util.Map;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.switchTo;
 
-public class BasePage {
+public class BasePage implements Page {
+    protected Map<String, By> fields;
+
+    protected Map<String, By> buttons;
+
+    protected Map<String, By> labels;
+
     protected void fillField(By locator, String value) {
         String chord = Keys.chord(Keys.COMMAND, "a");
         $(locator).sendKeys(chord);
@@ -41,5 +49,51 @@ public class BasePage {
 
     protected void shouldHaveTextByAttributeValue(By locator, String text) {
         $(locator).shouldHave(attribute("value", text), Duration.ZERO);
+    }
+
+    protected void shouldBeEmpty(By locator) {
+        $(locator).shouldBe(empty);
+    }
+
+    @Override
+    public void fillField(String fieldName, String value) {
+        By locator = fields.get(fieldName);
+        fillField(locator, value);
+    }
+
+    @Override
+    public void clickButton(String buttonName) {
+        By locator = buttons.get(buttonName);
+        click(locator);
+    }
+
+    @Override
+    public void checkText(String fieldName, String value) {
+        By locator = fields.get(fieldName);
+        shouldHaveTextByAttributeValue(locator, value);
+    }
+
+    @Override
+    public void checkTextByAttributeValue(String fieldName, String value) {
+        By locator = fields.get(fieldName);
+        shouldHaveTextByAttributeValue(locator, value);
+    }
+
+    @Override
+    public void selectDropdown(String fieldName, String value) {
+        By locator = fields.get(fieldName);
+        select(locator, value);
+    }
+
+    @Override
+    public void checkLabelText(String labelName, String value) {
+        By locator = labels.get(labelName);
+        shouldHaveText(locator, value);
+    }
+
+    @Override
+    public void checkLabelIsEmpty(String labelName) {
+        By locator = labels.get(labelName);
+        shouldBeEmpty(locator);
     }
 }
