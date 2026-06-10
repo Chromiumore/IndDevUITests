@@ -1,6 +1,7 @@
 package pages;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 import org.openqa.selenium.By;
@@ -85,5 +86,11 @@ public class BasePage implements Page {
     public void checkLabelIsEmpty(String labelName) {
         By locator = elements.get(labelName);
         shouldBeEmpty(locator);
+    }
+
+    @Override
+    public void waitForElementToAppear(String name) {
+        By locator = elements.get(name);
+        $(locator).shouldBe(exist, Duration.ofSeconds(15));
     }
 }

@@ -12,4 +12,6 @@ public interface Page {
     void checkLabelText(String labelName, String value);
 
     void checkLabelIsEmpty(String labelName);
+
+    void waitForElementToAppear(String name);
 }
